@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+//
 using IdentityServer4.Models;//添加引用
 
 namespace IdentityServer
 {
-    public class Config
+    public static class Config
     {
+        /// <summary>
+        /// 身份资源类型集合
+        /// </summary>
+        /// <returns></returns>
         public static IEnumerable<IdentityResource> GetIdentityResources()
         {
             return new IdentityResource[]
@@ -17,7 +19,7 @@ namespace IdentityServer
         }
 
         /// <summary>
-        /// api集合
+        /// api资源集合
         /// </summary>
         /// <returns></returns>
         public static IEnumerable<ApiResource> GetApis()
@@ -39,19 +41,15 @@ namespace IdentityServer
             {
                 new Client
                 {
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,// 不存在用户, 使用客户端Id+密码模式进行认证
+
                     ClientId = "client",
-
-                    // no interactive user, use the clientid/secret for authentication
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-
-                    // secret for authentication
                     ClientSecrets =
                     {
                         new Secret("secret".Sha256())
                     },
 
-                    // scopes that client has access to
-                    AllowedScopes = { "api1","api2" }
+                    AllowedScopes = { "api1","api2" }//允许访问的资源域
                 }
             };
         }

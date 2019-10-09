@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+//
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -23,10 +21,10 @@ namespace IdentityServer
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            var builder = services.AddIdentityServer()//nuget导入包 IdentityServer4
-                .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                .AddInMemoryApiResources(Config.GetApis())
-                .AddInMemoryClients(Config.GetClients());
+            IIdentityServerBuilder builder = services.AddIdentityServer()//来自包 IdentityServer4
+                .AddInMemoryIdentityResources(Config.GetIdentityResources())//身份资源类型
+                .AddInMemoryApiResources(Config.GetApis())//受保护的资源
+                .AddInMemoryClients(Config.GetClients());//客户端
 
             if (_env.IsDevelopment())
             {
