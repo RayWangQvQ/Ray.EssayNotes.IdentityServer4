@@ -26,8 +26,8 @@ namespace IdentityServer
         {
             return new List<ApiResource>
             {
-                new ApiResource("api1", "My API"),
-                new ApiResource("api2", "My API2"),
+                new ApiResource("scope1", "My API"),
+                new ApiResource("scope2", "My API2"),
             };
         }
 
@@ -49,7 +49,7 @@ namespace IdentityServer
                         new Secret("secret".Sha256())
                     },
 
-                    AllowedScopes = { "api1","api2" }//允许访问的资源域
+                    AllowedScopes = { "scope1", "scope2" }//允许访问的资源域
                 }
             };
         }

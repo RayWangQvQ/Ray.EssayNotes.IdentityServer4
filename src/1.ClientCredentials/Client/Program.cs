@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+//
 using IdentityModel.Client;//添加引用
 using Newtonsoft.Json.Linq;
 
@@ -16,8 +17,8 @@ namespace Client
             // 调用api
             var apiClient = new HttpClient();
             apiClient.SetBearerToken(accessToken);
-
             var response = await apiClient.GetAsync("http://localhost:5001/WeatherForecast");
+
             Console.WriteLine("\r\n调用接口:");
             if (!response.IsSuccessStatusCode)
             {
@@ -40,8 +41,8 @@ namespace Client
         {
             var client = new HttpClient();
 
-            // discover endpoints from metadata
-            var disco = await client.GetDiscoveryDocumentAsync("http://localhost:5000");
+            // 获取导航文件
+            DiscoveryDocumentResponse disco = await client.GetDiscoveryDocumentAsync("http://localhost:5000");
             if (disco.IsError)
             {
                 Console.WriteLine(disco.Error);
@@ -55,9 +56,10 @@ namespace Client
                 ClientId = "client",
                 ClientSecret = "secret",
 
-                Scope = "api1"
+                Scope = "scope1"
             };
-            var tokenResponse = await client.RequestClientCredentialsTokenAsync(request);
+            TokenResponse tokenResponse = await client.RequestClientCredentialsTokenAsync(request);
+
             if (tokenResponse.IsError)
             {
                 Console.WriteLine(tokenResponse.Error);
