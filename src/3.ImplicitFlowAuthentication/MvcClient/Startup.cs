@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Threading.Tasks;
+//
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -35,7 +32,7 @@ namespace MvcClient
                 .AddCookie("Cookies")
                 .AddOpenIdConnect("oidc", options =>//来自包Microsoft.AspNetCore.Authentication.OpenIdConnect
                 {
-                    options.Authority = "http://localhost:5000";
+                    options.Authority = "http://localhost:5000";//授权认证服务器地址
                     options.RequireHttpsMetadata = false;
 
                     options.ClientId = "mvc";
@@ -54,7 +51,7 @@ namespace MvcClient
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-            app.UseStaticFiles();
+            app.UseStaticFiles();//允许访问静态文件
 
             app.UseRouting();
 

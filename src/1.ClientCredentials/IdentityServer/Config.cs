@@ -41,7 +41,7 @@ namespace IdentityServer
             {
                 new Client
                 {
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,// 不存在用户, 使用客户端Id+密码模式进行认证
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,//颁发类型为【客户端凭证模式】，即不存在用户, 使用客户端Id+密码模式进行认证
 
                     ClientId = "client",
                     ClientSecrets =

@@ -22,19 +22,6 @@ namespace IdentityServer
         }
 
         /// <summary>
-        /// api资源集合
-        /// </summary>
-        /// <returns></returns>
-        public static IEnumerable<ApiResource> GetApis()
-        {
-            return new List<ApiResource>
-            {
-                new ApiResource("scope1", "My API"),
-                new ApiResource("scope2", "My API2"),
-            };
-        }
-
-        /// <summary>
         /// 客户端集合
         /// </summary>
         /// <returns></returns>
@@ -44,48 +31,21 @@ namespace IdentityServer
             {
                 new Client
                 {
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,// 不存在用户, 使用客户端Id+密码模式进行认证
-
-                    ClientId = "client",
-                    ClientSecrets =
-                    {
-                        new Secret("secret".Sha256())
-                    },
-
-                    AllowedScopes = { "scope1", "scope2" }//允许访问的资源域
-                },
-
-                new Client
-                {
-                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,//使用账号+密码进行认证
-
-                    ClientId = "ro.client",
-                    ClientSecrets =
-                    {
-                        new Secret("secret".Sha256())
-                    },
-
-                    AllowedScopes = { "scope1" }
-                },
-
-                // OpenID Connect implicit flow client (MVC)
-                new Client
-                {
-                    AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowedGrantTypes = GrantTypes.Implicit,//颁发类型为【简化模式】，即OpenID Connect的implicit模式
 
                     ClientId = "mvc",
-                    ClientName = "MVC Client",
+                    ClientName = "我的MVC客户端",
 
-                    // where to redirect to after login
+                    // 登陆成功后允许重定向的地址集合
                     RedirectUris = { "http://localhost:5002/signin-oidc" },
 
-                    // where to redirect to after logout
+                    // 注销后允许重定向的地址集合
                     PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
 
                     AllowedScopes = new List<string>
                     {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile
+                        IdentityServerConstants.StandardScopes.OpenId,//即"openid"字符串
+                        IdentityServerConstants.StandardScopes.Profile//即"profile"字符串
                     }
                 }
             };

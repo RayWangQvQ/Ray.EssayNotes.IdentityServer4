@@ -42,19 +42,7 @@ namespace IdentityServer
             {
                 new Client
                 {
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,// 不存在用户, 使用客户端Id+密码模式进行认证
-
-                    ClientId = "client",
-                    ClientSecrets =
-                    {
-                        new Secret("secret".Sha256())
-                    },
-
-                    AllowedScopes = { "scope1", "scope2" }//允许访问的资源域
-                },
-                new Client
-                {
-                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,//使用账号+密码进行认证
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,//颁发类型为【密码模式】，即使用账号+密码进行认证
 
                     ClientId = "ro.client",
                     ClientSecrets =

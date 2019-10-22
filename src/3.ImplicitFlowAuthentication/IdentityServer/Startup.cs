@@ -21,11 +21,10 @@ namespace IdentityServer
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllersWithViews();//注入控制器（mvc）
 
             IIdentityServerBuilder builder = services.AddIdentityServer() //来自包 IdentityServer4
                 .AddInMemoryIdentityResources(Config.GetIdentityResources()) //身份资源类型
-                .AddInMemoryApiResources(Config.GetApis()) //受保护的资源
                 .AddInMemoryClients(Config.GetClients()) //客户端
                 .AddTestUsers(Config.GetUsers());//用户
 
@@ -48,6 +47,8 @@ namespace IdentityServer
             }
 
             app.UseRouting();
+
+            app.UseStaticFiles();
 
             app.UseIdentityServer();
             app.UseAuthorization();//3.0及以后必须添加到管道
