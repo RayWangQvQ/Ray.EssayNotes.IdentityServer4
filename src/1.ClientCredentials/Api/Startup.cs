@@ -26,10 +26,9 @@ namespace Api
             services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>//来自包 Microsoft.AspNetCore.Authentication.JwtBearer
                 {
-                    options.Authority = "http://localhost:5000";//授权服务器地址
+                    options.Authority = "http://localhost:5000";//验证授权认证服务器地址
                     options.RequireHttpsMetadata = false;
-
-                    options.Audience = "scope1";//受保护的资源域名称（如果是微服务架构，就是当前服务的名称）
+                    options.Audience = "MyApiResourceScope1";//验证token颁发给的受众，即token可用于进入哪个资源域
                 });
 
             services.AddAuthorization();

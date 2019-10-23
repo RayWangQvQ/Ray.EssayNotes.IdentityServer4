@@ -53,13 +53,14 @@ namespace Client
             var request = new PasswordTokenRequest
             {
                 Address = disco.TokenEndpoint,
-                ClientId = "ro.client",
+
+                ClientId = "resourceOwnerPwd.client",
                 ClientSecret = "secret",
 
                 UserName = "张三",
                 Password = "123",
 
-                Scope = "scope1"
+                //Scope = "MyApiResourceScope1",//欲进入的资源域，不指定则为ids中为该客户端配置的允许访问的所有资源域；指定的话，则获取到的token只能用来进入指定的资源域
             };
             TokenResponse tokenResponse = await client.RequestPasswordTokenAsync(request);
 

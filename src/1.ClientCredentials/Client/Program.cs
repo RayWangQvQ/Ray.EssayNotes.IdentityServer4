@@ -11,7 +11,7 @@ namespace Client
     {
         private static async Task Main()
         {
-            //获取与token
+            //获取AccessToken
             string accessToken = await GetAccessToken();
 
             // 调用api
@@ -34,7 +34,7 @@ namespace Client
         }
 
         /// <summary>
-        /// 更具客户端凭证获取token
+        /// 根据客户端凭证获取AccessToken
         /// </summary>
         /// <returns></returns>
         private static async Task<string> GetAccessToken()
@@ -53,10 +53,11 @@ namespace Client
             var request = new ClientCredentialsTokenRequest
             {
                 Address = disco.TokenEndpoint,
-                ClientId = "client",
+
+                ClientId = "clientCredentials.client",
                 ClientSecret = "secret",
 
-                Scope = "scope1"
+                //Scope = "MyApiResourceScope1",//欲进入的资源域，不指定则为ids中为该客户端配置的允许访问的所有资源域；指定的话，则获取到的token只能用来进入指定的资源域
             };
             TokenResponse tokenResponse = await client.RequestClientCredentialsTokenAsync(request);
 

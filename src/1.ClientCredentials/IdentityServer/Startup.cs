@@ -22,8 +22,7 @@ namespace IdentityServer
         public void ConfigureServices(IServiceCollection services)
         {
             IIdentityServerBuilder builder = services.AddIdentityServer()//来自包 IdentityServer4
-                .AddInMemoryIdentityResources(Config.GetIdentityResources())//身份资源类型
-                .AddInMemoryApiResources(Config.GetApis())//受保护的资源
+                .AddInMemoryApiResources(Config.GetApiResources())//受保护的api资源
                 .AddInMemoryClients(Config.GetClients());//客户端
 
             if (_env.IsDevelopment())

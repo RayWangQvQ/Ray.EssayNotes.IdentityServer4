@@ -27,8 +27,8 @@ namespace IdentityServer
         {
             return new List<ApiResource>
             {
-                new ApiResource("scope1", "My API"),
-                new ApiResource("scope2", "My API2"),
+                new ApiResource("MyApiResourceScope1", "我的API资源域1"),
+                new ApiResource("MyApiResourceScope2", "我的API资源域2"),
             };
         }
 
@@ -44,13 +44,16 @@ namespace IdentityServer
                 {
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,//颁发类型为【密码模式】，即使用账号+密码进行认证
 
-                    ClientId = "ro.client",
+                    ClientId = "resourceOwnerPwd.client",
                     ClientSecrets =
                     {
                         new Secret("secret".Sha256())
                     },
 
-                    AllowedScopes = { "scope1" }
+                    AllowedScopes = new List<string>
+                    {
+                        "MyApiResourceScope1",
+                    }
                 }
             };
         }

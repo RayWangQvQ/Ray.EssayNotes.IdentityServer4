@@ -7,27 +7,15 @@ namespace IdentityServer
     public static class Config
     {
         /// <summary>
-        /// 身份资源类型集合
+        /// 受保护的api资源集合
         /// </summary>
         /// <returns></returns>
-        public static IEnumerable<IdentityResource> GetIdentityResources()
-        {
-            return new IdentityResource[]
-            {
-                new IdentityResources.OpenId()
-            };
-        }
-
-        /// <summary>
-        /// api资源集合
-        /// </summary>
-        /// <returns></returns>
-        public static IEnumerable<ApiResource> GetApis()
+        public static IEnumerable<ApiResource> GetApiResources()
         {
             return new List<ApiResource>
             {
-                new ApiResource("scope1", "My API"),
-                new ApiResource("scope2", "My API2"),
+                new ApiResource("MyApiResourceScope1", "我的API资源域1"),
+                new ApiResource("MyApiResourceScope2", "我的API资源域2"),
             };
         }
 
@@ -43,13 +31,19 @@ namespace IdentityServer
                 {
                     AllowedGrantTypes = GrantTypes.ClientCredentials,//颁发类型为【客户端凭证模式】，即不存在用户, 使用客户端Id+密码模式进行认证
 
-                    ClientId = "client",
+                    ClientId = "clientCredentials.client",
+                    ClientName= "我的客户端",
                     ClientSecrets =
                     {
                         new Secret("secret".Sha256())
                     },
 
-                    AllowedScopes = { "scope1", "scope2" }//允许访问的资源域
+                    //允许该客户端访问的资源域
+                    AllowedScopes = new List<string>
+                    {
+                        "MyApiResourceScope1",
+                        "MyApiResourceScope2"
+                    }
                 }
             };
         }
