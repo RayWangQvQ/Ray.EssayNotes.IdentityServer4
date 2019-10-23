@@ -26,8 +26,8 @@ namespace MvcClient
 
             services.AddAuthentication(options =>
                 {
-                    options.DefaultScheme = "Cookies";
-                    options.DefaultChallengeScheme = "oidc";
+                    options.DefaultScheme = "Cookies";//使用Cookie作为认证的默认方案
+                    options.DefaultChallengeScheme = "oidc";//当需要用户登录时，设置oidc为默认方案
                 })
                 .AddCookie("Cookies")
                 .AddOpenIdConnect("oidc", options =>//来自包Microsoft.AspNetCore.Authentication.OpenIdConnect
@@ -36,7 +36,7 @@ namespace MvcClient
                     options.RequireHttpsMetadata = false;
 
                     options.ClientId = "mvc";
-                    options.SaveTokens = true;
+                    options.SaveTokens = true;//在Cookie中保存令牌
                 });
         }
 

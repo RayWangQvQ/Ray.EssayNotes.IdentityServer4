@@ -18,6 +18,7 @@ namespace IdentityServer
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),//添加
+                new IdentityResources.Phone(),//添加
             };
         }
 
@@ -44,8 +45,11 @@ namespace IdentityServer
 
                     AllowedScopes = new List<string>
                     {
-                        IdentityServerConstants.StandardScopes.OpenId,//即"openid"字符串
-                        IdentityServerConstants.StandardScopes.Profile//即"profile"字符串
+                        //与OAuth相同，Scopes代表要保护的资源域；
+                        //与OAuth不同的是，OIDC中的资源域不代表API，而是代表用户ID、姓名或电子邮件地址等用户的身份信息。
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email
                     }
                 }
             };
@@ -63,7 +67,7 @@ namespace IdentityServer
                 {
                     SubjectId = "1",
                     Username = "张三",
-                    Password = "123"
+                    Password = "123",
                 },
                 new TestUser
                 {
