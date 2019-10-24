@@ -23,8 +23,8 @@ namespace IdentityServer
         {
             services.AddControllersWithViews();//注入控制器（mvc）
 
-            IIdentityServerBuilder builder = services.AddIdentityServer() //来自包 IdentityServer4
-                .AddInMemoryIdentityResources(Config.GetIdentityResources()) //身份资源类型
+            IIdentityServerBuilder builder = services.AddIdentityServer() //来自包IdentityServer4
+                .AddInMemoryIdentityResources(Config.GetIdentityResources()) //受保护的身份资源类型
                 .AddInMemoryClients(Config.GetClients()) //客户端
                 .AddTestUsers(Config.GetUsers());//用户
 

@@ -17,8 +17,8 @@ namespace IdentityServer
             return new IdentityResource[]
             {
                 new IdentityResources.OpenId(),
-                new IdentityResources.Profile(),//添加
-                new IdentityResources.Phone(),//添加
+                new IdentityResources.Profile(),//用户简介信息（姓、名等）
+                //new IdentityResources.Phone(),//手机号
             };
         }
 
@@ -34,8 +34,8 @@ namespace IdentityServer
                 {
                     AllowedGrantTypes = GrantTypes.Implicit,//颁发类型为【简化模式】，即OpenID Connect的implicit模式
 
-                    ClientId = "mvc",
-                    ClientName = "我的MVC客户端",
+                    ClientId = "mvc.client",
+                    ClientName = "【我的MVC客户端】",
 
                     // 登陆成功后允许重定向的地址集合
                     RedirectUris = { "http://localhost:5002/signin-oidc" },
@@ -48,8 +48,8 @@ namespace IdentityServer
                         //与OAuth相同，Scopes代表要保护的资源域；
                         //与OAuth不同的是，OIDC中的资源域不代表API，而是代表用户ID、姓名或电子邮件地址等用户的身份信息。
                         IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        IdentityServerConstants.StandardScopes.Email
+                        IdentityServerConstants.StandardScopes.Profile,//用户简介
+                        //IdentityServerConstants.StandardScopes.Phone,//手机
                     }
                 }
             };

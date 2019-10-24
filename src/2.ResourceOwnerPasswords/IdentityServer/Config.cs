@@ -8,18 +8,6 @@ namespace IdentityServer
     public static class Config
     {
         /// <summary>
-        /// 身份资源类型集合
-        /// </summary>
-        /// <returns></returns>
-        public static IEnumerable<IdentityResource> GetIdentityResources()
-        {
-            return new IdentityResource[]
-            {
-                new IdentityResources.OpenId()
-            };
-        }
-
-        /// <summary>
         /// api资源集合
         /// </summary>
         /// <returns></returns>

@@ -21,9 +21,8 @@ namespace IdentityServer
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            IIdentityServerBuilder builder = services.AddIdentityServer() //来自包 IdentityServer4
-                .AddInMemoryIdentityResources(Config.GetIdentityResources()) //身份资源类型
-                .AddInMemoryApiResources(Config.GetApis()) //受保护的资源
+            IIdentityServerBuilder builder = services.AddIdentityServer() //来自包IdentityServer4
+                .AddInMemoryApiResources(Config.GetApis()) //受保护的api资源
                 .AddInMemoryClients(Config.GetClients()) //客户端
                 .AddTestUsers(Config.GetUsers());//用户
 

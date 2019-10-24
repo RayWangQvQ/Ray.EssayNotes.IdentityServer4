@@ -11,7 +11,7 @@ namespace Client
     {
         private static async Task Main()
         {
-            //获取与token
+            //获取AccessToken
             string accessToken = await GetAccessToken();
 
             // 调用api
