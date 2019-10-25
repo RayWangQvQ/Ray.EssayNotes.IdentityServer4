@@ -34,7 +34,7 @@ namespace IdentityServer
                 {
                     AllowedGrantTypes = GrantTypes.Implicit,//颁发类型为【简化模式】，即OpenID Connect的implicit模式
 
-                    ClientId = "mvc.client",
+                    ClientId = "implicit.client",
                     ClientName = "【我的MVC客户端】",
 
                     // 登陆成功后允许重定向的地址集合

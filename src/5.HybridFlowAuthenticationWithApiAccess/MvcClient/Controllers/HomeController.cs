@@ -35,7 +35,7 @@ namespace MvcClient.Controllers
 
         public IActionResult Logout()
         {
-            return SignOut("Cookies", "oidc");
+            return SignOut("MyCookieScheme", "oidc");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

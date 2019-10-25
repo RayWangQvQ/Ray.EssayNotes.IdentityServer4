@@ -35,7 +35,7 @@ namespace MvcClient
                     options.Authority = "http://localhost:5000";//授权认证服务器地址
                     options.RequireHttpsMetadata = false;
 
-                    options.ClientId = "mvc.client";
+                    options.ClientId = "implicit.client";
                     //options.Scope.Add("phone");//scope默认有【openid】和【profile】两项（在OpenIdConnectOptions构造时被添加），可以根据需求自行添加或移除
 
                     options.SaveTokens = true;//在Cookie中保存令牌

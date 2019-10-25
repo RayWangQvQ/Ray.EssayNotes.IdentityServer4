@@ -18,7 +18,6 @@ namespace IdentityServer
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),//添加
-                new IdentityResources.Phone(),//添加
             };
         }
 
@@ -47,7 +46,7 @@ namespace IdentityServer
                 {
                     AllowedGrantTypes=GrantTypes.Hybrid,//混合流程模式
 
-                    ClientId = "mvc",
+                    ClientId = "hybrid.mvc",
                     ClientName = "我的MVC客户端",
 
                     ClientSecrets =
@@ -63,11 +62,10 @@ namespace IdentityServer
                     //允许该客户端访问的资源域
                     AllowedScopes = new List<string>
                     {
-                        //与OAuth相同，Scopes代表要保护的资源域；
-                        //与OAuth不同的是，OIDC中的资源域不代表API，而是代表用户ID、姓名或电子邮件地址等用户的身份信息。
+                        //身份资源域：
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        IdentityServerConstants.StandardScopes.Phone,
+                        //Api资源域：
                         "MyApiResourceScope1",
                         "MyApiResourceScope2"
                     },

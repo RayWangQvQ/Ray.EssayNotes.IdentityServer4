@@ -27,17 +27,18 @@ namespace MvcClient
 
             services.AddAuthentication(options =>
                 {
-                    options.DefaultScheme = "Cookies";//使用Cookie作为认证的默认方案
+                    options.DefaultScheme = "MyCookieScheme";//使用Cookie作为认证的默认方案
                     options.DefaultChallengeScheme = "oidc";//当需要用户登录时，设置oidc为默认方案
                 })
-                .AddCookie("Cookies")
+                .AddCookie("MyCookieScheme")
                 .AddOpenIdConnect("oidc", options =>//来自包Microsoft.AspNetCore.Authentication.OpenIdConnect
                 {
                     options.Authority = "http://localhost:5000";//授权认证服务器地址
                     options.RequireHttpsMetadata = false;
 
-                    options.ClientId = "mvc";
+                    options.ClientId = "hybrid.mvc";
                     options.ClientSecret = "secret";
+                    
                     options.ResponseType = "code id_token";
 
                     options.SaveTokens = true;//在Cookie中保存令牌（包括身份令牌、访问令牌、刷新令牌）

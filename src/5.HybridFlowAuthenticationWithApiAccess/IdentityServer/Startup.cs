@@ -46,10 +46,9 @@ namespace IdentityServer
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseStaticFiles();
 
             app.UseIdentityServer();
             app.UseAuthorization();//3.0及以后必须添加到管道
